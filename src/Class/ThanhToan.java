@@ -5,11 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class ThanhToan {
     private static List<ThanhToan> lichSuThanhToan = new ArrayList<>();
     private static double tongDoanhThu = 0;
     private static Scanner sc = new Scanner(System.in);
+    private static final DecimalFormat df = new DecimalFormat("#.###"); // định dạng tiền tệ
 
     private String maPhong;
     private String tenKhach;
@@ -31,7 +33,7 @@ public class ThanhToan {
             return;
         }
         
-        double soTien = phong.getGiaPhong(); // Có thể mở rộng tính thêm ngày ở
+        double soTien = phong.getGiaPhong(); 
         ThanhToan tt = new ThanhToan(
             phong.getMaPhong(),
             phong.getKhachThue().getTen(),
@@ -40,7 +42,7 @@ public class ThanhToan {
             
         lichSuThanhToan.add(tt);
         tongDoanhThu += soTien;
-        System.out.println("Thanh toan thanh cong! So tien: " + soTien + " VND");
+        System.out.println("Thanh toan thanh cong! So tien: " + df.format(soTien) + " VND");
     }
 
     // ===== THỰC HIỆN THANH TOÁN (khi trả phòng) =====
@@ -59,10 +61,7 @@ public class ThanhToan {
             return;
         }
 
-        // Ghi nhận thanh toán
         ghiNhanThanhToan(phong);
-
-        // Trả phòng sau khi thanh toán
         phong.traPhong();
     }
 
@@ -77,13 +76,13 @@ public class ThanhToan {
             System.out.println(tt);
         }
         System.out.println("================================");
-        System.out.println("Tong doanh thu: " + tongDoanhThu + " VND\n");
+        System.out.println("Tong doanh thu: " + df.format(tongDoanhThu) + " VND\n");
     }
 
     // ===== XEM DOANH THU =====
     public static void xemDoanhThu() {
         System.out.println("\n===== DOANH THU HIEN TAI =====");
-        System.out.println("Tong doanh thu: " + tongDoanhThu + " VND");
+        System.out.println("Tong doanh thu: " + df.format(tongDoanhThu) + " VND");
         System.out.println("================================\n");
     }
 
@@ -108,8 +107,8 @@ public class ThanhToan {
     @Override
     public String toString() {
         return String.format(
-            "Phong: %s | Khach: %s | Tien: %.0f VND | Thoi gian: %s",
-            maPhong, tenKhach, soTien, thoiGian
+            "Phong: %s | Khach: %s | Tien: %s VND | Thoi gian: %s",
+            maPhong, tenKhach, df.format(soTien), thoiGian
         );
     }
 

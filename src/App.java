@@ -72,6 +72,7 @@ public class App {
             System.out.println("2. Dat phong");
             System.out.println("3. Tra phong va thanh toan");
             System.out.println("4. Xem khach thue theo phong");
+            System.out.println("5. Xoa phong");
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             choice = Integer.parseInt(sc.nextLine());
@@ -84,6 +85,7 @@ public class App {
                     ThanhToan.thanhToanPhong();
                 }
                 case 4 -> QuanLyPhong.xemKhachTheoPhong();
+                case 5 -> QuanLyPhong.xoaPhong();
                 case 0 -> System.out.println("Quay lai menu chinh");
                 default -> System.out.println("Lua chon khong hop le!");
             }
