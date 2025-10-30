@@ -1,9 +1,9 @@
 import java.util.Scanner;
-import Class.KhachHang;
-import Class.QuanLyPhong;
-
 import java.util.ArrayList;
 import java.util.List;
+import Class.KhachHang;
+import Class.QuanLyPhong;
+import Class.ThanhToan;
 
 public class App {
     private static Scanner sc = new Scanner(System.in);
@@ -13,8 +13,9 @@ public class App {
         int choice;
         do {
             System.out.println("\n===== MENU CHINH =====");
-            System.out.println("1. Quan ly khach hàng");
+            System.out.println("1. Quan ly khach hang");
             System.out.println("2. Quan ly phong");
+            System.out.println("3. Quan ly thanh toan");
             System.out.println("0. Thoat");
             System.out.print("Chon: ");
             choice = Integer.parseInt(sc.nextLine());
@@ -22,6 +23,7 @@ public class App {
             switch (choice) {
                 case 1 -> menuKhachHang();
                 case 2 -> menuPhong();
+                case 3 -> menuThanhToan();
                 case 0 -> System.out.println("Tam biet!");
                 default -> System.out.println("Lua chon khong hop le!");
             }
@@ -44,7 +46,6 @@ public class App {
             switch (choice) {
                 case 1 -> {
                     KhachHang.themKhachHang();
-                    // Sau khi thêm, ta lưu lại danh sách (để phòng có thể dùng)
                     capNhatDanhSachKhach();
                 }
                 case 2 -> {
@@ -69,7 +70,7 @@ public class App {
             System.out.println("\n===== QUAN LY PHONG =====");
             System.out.println("1. Xem danh sach phong");
             System.out.println("2. Dat phong");
-            System.out.println("3. Tra phong");
+            System.out.println("3. Tra phong va thanh toan");
             System.out.println("4. Xem khach thue theo phong");
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
@@ -78,7 +79,10 @@ public class App {
             switch (choice) {
                 case 1 -> QuanLyPhong.xemDanhSachPhong();
                 case 2 -> QuanLyPhong.datPhong(dsKhachHang);
-                case 3 -> QuanLyPhong.traPhong();
+                case 3 -> {
+                    // Khi trả phòng thì tạo bản ghi thanh toán
+                    ThanhToan.thanhToanPhong();
+                }
                 case 4 -> QuanLyPhong.xemKhachTheoPhong();
                 case 0 -> System.out.println("Quay lai menu chinh");
                 default -> System.out.println("Lua chon khong hop le!");
@@ -86,9 +90,29 @@ public class App {
         } while (choice != 0);
     }
 
+    // ===== MENU THANH TOÁN =====
+    private static void menuThanhToan() {
+        int choice;
+        do {
+            System.out.println("\n===== QUAN LY THANH TOAN =====");
+            System.out.println("1. Xem lich su thanh toan");
+            System.out.println("2. Xem tong doanh thu");
+            System.out.println("0. Quay lai");
+            System.out.print("Chon: ");
+            choice = Integer.parseInt(sc.nextLine());
+
+            switch (choice) {
+                case 1 -> ThanhToan.xemLichSuThanhToan();
+                case 2 -> ThanhToan.xemDoanhThu();
+                case 0 -> System.out.println("Quay lai menu chinh");
+                default -> System.out.println("Lua chon khong hop le!");
+            }
+        } while (choice != 0);
+    }
+
     // ===== CẬP NHẬT DANH SÁCH KHÁCH HÀNG =====
+    @SuppressWarnings("unchecked")
     private static void capNhatDanhSachKhach() {
-        // Lấy danh sách mới từ class KhachHang
         try {
             java.lang.reflect.Field field = KhachHang.class.getDeclaredField("dsKhachHang");
             field.setAccessible(true);

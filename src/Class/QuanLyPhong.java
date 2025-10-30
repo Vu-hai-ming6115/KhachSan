@@ -75,8 +75,28 @@ public class QuanLyPhong {
         }
 
         if (phong.traPhong()) {
+            ThanhToan.ghiNhanThanhToan(phong);
             System.out.println("Tra phong thanh cong!");
         }
+    }
+    //==== Xoa Phong =====
+    public static void xoaPhong(){
+        System.out.print("Nhap ma phong can xoa: ");
+        String maPhong = sc.nextLine().trim();
+        
+        Phong phong = timPhongTheoMa(maPhong);
+         if (phong == null) {
+            System.out.println("Khong tim thay phong " + maPhong);
+            return;
+        }
+        if (!phong.isTrangThai()) {
+            System.out.println("Phong nay dang trong, khong the xoa!");
+            return;
+        }
+        if (phong.traPhong()) {
+            System.out.println("Xoa phong thanh cong!");
+        }        
+
     }
 
     // ===== XEM KHÁCH ĐANG Ở PHÒNG =====
