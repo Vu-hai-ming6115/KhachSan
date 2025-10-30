@@ -11,7 +11,7 @@ public class ThanhToan {
     private static List<ThanhToan> lichSuThanhToan = new ArrayList<>();
     private static double tongDoanhThu = 0;
     private static Scanner sc = new Scanner(System.in);
-    private static final DecimalFormat df = new DecimalFormat("#.###"); // định dạng tiền tệ
+    private static final DecimalFormat df = new DecimalFormat("#,###"); 
 
     private String maPhong;
     private String tenKhach;

@@ -10,8 +10,11 @@ public class QuanLyPhong {
 
     // ===== KHỞI TẠO DANH SÁCH PHÒNG 101 -> 110 =====
     static {
-        for (int i = 101; i <= 110; i++) {
+        for (int i = 101; i <= 108; i++) {
             dsPhong.add(new Phong(String.valueOf(i), "Thuong", 500000, false));
+        }
+        for (int i = 109; i <= 110; i++) {
+            dsPhong.add(new Phong(String.valueOf(i), "VIP", 800000, false));
         }
     }
 
