@@ -5,18 +5,23 @@ import java.util.Scanner;
 
 public class NhanVien extends Person {
     private double luongCoBan;
+    private String chucvu;
     private static ArrayList<NhanVien> dsNV = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
 
     // ===== CONSTRUCTOR =====
-    public NhanVien(String ten, String soCMND, String soDienThoai, double luongCoBan) {
+    public NhanVien(String ten, String soCMND, String soDienThoai, double luongCoBan,String chucvu) {
         super("NV",ten, soCMND, soDienThoai);
         setLuongCoBan(luongCoBan);
+        setChucVu(chucvu);
     }
 
     // ===== GETTER & SETTER =====
     public double getLuongCoBan() {
         return luongCoBan;
+    }
+    public String getChucVu(){
+        return chucvu;
     }
 
     public void setLuongCoBan(double luongCoBan) {
@@ -24,13 +29,16 @@ public class NhanVien extends Person {
             this.luongCoBan = luongCoBan;
         }
     }
+    public void setChucVu(String chucvu){
+        this.chucvu = chucvu;
+    }
 
     // ===== HIỂN THỊ THÔNG TIN =====
     @Override
     public String toString() {
         return String.format(
-            "Nhan vien [ID=%s, Ten=%s, CMND=%s, SDT=%s, Luong=%.2f]",
-            getMaID(), getTen(), getSoCMND(), getSoDienThoai(), getLuongCoBan()
+            "Nhan vien [ID=%s, Ten=%s, CMND=%s, SDT=%s, Luong=%.2f, Chucvu = %s]",
+            getMaID(), getTen(), getSoCMND(), getSoDienThoai(), getLuongCoBan(),getChucVu()
         );
     }
 
@@ -50,7 +58,10 @@ public class NhanVien extends Person {
         System.out.print("Nhap luong co ban: ");
         double luong = Double.parseDouble(sc.nextLine());
 
-        NhanVien nv = new NhanVien(ten, cmnd, sdt, luong);
+        System.out.print("Nhap chuc vu: ");
+        String chucvu = sc.nextLine();
+
+        NhanVien nv = new NhanVien(ten, cmnd, sdt, luong,chucvu);
         dsNV.add(nv);
         System.out.println("Da them nhan vien thanh cong!");
     }
@@ -116,7 +127,7 @@ public class NhanVien extends Person {
                 System.out.println("Luong khong hop le, giu nguyen gia tri cu.");
             }
         }
-
+        System.out.print("Nhap chuc vu moi: ");
         System.out.println("Da cap nhat thong tin nhan vien!");
     }
 

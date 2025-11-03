@@ -31,8 +31,9 @@ public class KhachHang extends Person {
         System.out.print("Nhap ten khach hang: ");
         String ten = sc.nextLine();
 
-        System.out.print("Nhap so CMND: ");
+        System.out.println("Nhap so CMND: ");
         String cmnd = sc.nextLine();
+        
 
         System.out.print("Nhap so dien thoai: ");
         String sdt = sc.nextLine();

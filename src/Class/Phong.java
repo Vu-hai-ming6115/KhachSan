@@ -8,7 +8,6 @@ public class Phong {
     private double giaPhong;
     private boolean trangThai;
     private KhachHang KhachThue;
-
     private static final DecimalFormat df = new DecimalFormat("#,###");
 
     public Phong(String maPhong, String loaiPhong, double giaPhong, boolean trangThai) {

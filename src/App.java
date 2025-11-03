@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import Class.KhachHang;
+import Class.NhanVien;
 import Class.QuanLyPhong;
 import Class.ThanhToan;
 
@@ -16,6 +17,7 @@ public class App {
             System.out.println("1. Quan ly khach hang");
             System.out.println("2. Quan ly phong");
             System.out.println("3. Quan ly thanh toan");
+            System.out.println("4. Quan ly nhan vien");
             System.out.println("0. Thoat");
             System.out.print("Chon: ");
             choice = Integer.parseInt(sc.nextLine());
@@ -24,6 +26,7 @@ public class App {
                 case 1 -> menuKhachHang();
                 case 2 -> menuPhong();
                 case 3 -> menuThanhToan();
+                case 4 -> menuNhanVien();
                 case 0 -> System.out.println("Tam biet!");
                 default -> System.out.println("Lua chon khong hop le!");
             }
@@ -112,6 +115,38 @@ public class App {
         } while (choice != 0);
     }
 
+    // ===== MENU Nhan Vien =====
+    private static void menuNhanVien(){
+        int choice1;
+        do {
+            System.out.println("\n===== QUAN LY NhanVien =====");
+            System.out.println("1. Them nhan vien");
+            System.out.println("2. Xoa nhan vien");
+            System.out.println("3. Sua thong tin nhan vien");
+            System.out.println("4. Xem danh sach nhan vien");
+            System.out.println("0. Quay lai");
+            System.out.print("Chon: ");
+            choice1 = Integer.parseInt(sc.nextLine());
+
+            switch (choice1) {
+                case 1 -> {
+                    NhanVien.themNhanVien();
+                }
+                case 2 -> {
+                    NhanVien.xoaNhanVien();
+                    
+                }
+                case 3 -> {
+                    NhanVien.suaNhanVien();
+                    
+                }
+                case 4 -> NhanVien.xemNhanVien();
+                case 0 -> System.out.println("Quay lai menu chinh");
+                default -> System.out.println("Lua chon khong hop le!");
+            }
+        } while (choice1 != 0);
+    }
+
     // ===== CẬP NHẬT DANH SÁCH KHÁCH HÀNG =====
     @SuppressWarnings("unchecked")
     private static void capNhatDanhSachKhach() {
@@ -123,4 +158,5 @@ public class App {
             System.out.println("Khong the cap nhat danh sach khach hang!");
         }
     }
+    
 }
