@@ -16,7 +16,7 @@ public class App {
             System.out.println("\n===== MENU CHINH =====");
             System.out.println("1. Quan ly khach hang");
             System.out.println("2. Quan ly phong");
-            System.out.println("3. Quan ly thanh toan");
+            System.out.println("3. Quan ly doanh thu");
             System.out.println("4. Quan ly nhan vien");
             System.out.println("0. Thoat");
             System.out.print("Chon: ");
@@ -42,6 +42,7 @@ public class App {
             System.out.println("2. Xoa khach hang");
             System.out.println("3. Sua thong tin khach hang");
             System.out.println("4. Xem danh sach khach hang");
+            System.out.println("5. Tim thong tin khach hang");
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             choice = Integer.parseInt(sc.nextLine());
@@ -60,6 +61,7 @@ public class App {
                     capNhatDanhSachKhach();
                 }
                 case 4 -> KhachHang.xemKhachHang();
+                case 5 -> KhachHang.timKhachHang();
                 case 0 -> System.out.println("Quay lai menu chinh");
                 default -> System.out.println("Lua chon khong hop le!");
             }
@@ -76,6 +78,8 @@ public class App {
             System.out.println("3. Tra phong va thanh toan");
             System.out.println("4. Xem khach thue theo phong");
             System.out.println("5. Xoa phong");
+            System.out.println("6. Them dich vu");
+            System.out.println("7. Xem dich vu");
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             choice = Integer.parseInt(sc.nextLine());
@@ -89,17 +93,19 @@ public class App {
                 }
                 case 4 -> QuanLyPhong.xemKhachTheoPhong();
                 case 5 -> QuanLyPhong.xoaPhong();
+                case 6 -> QuanLyPhong.themDichVuVaoPhong(sc);
+                case 7 -> QuanLyPhong.xemDichVuTheoPhong(sc);
                 case 0 -> System.out.println("Quay lai menu chinh");
                 default -> System.out.println("Lua chon khong hop le!");
             }
         } while (choice != 0);
     }
 
-    // ===== MENU THANH TOÁN =====
+    // ===== MENU DOANH THU =====
     private static void menuThanhToan() {
         int choice;
         do {
-            System.out.println("\n===== QUAN LY THANH TOAN =====");
+            System.out.println("\n===== QUAN LY DOANH THU =====");
             System.out.println("1. Xem lich su thanh toan");
             System.out.println("2. Xem tong doanh thu");
             System.out.println("0. Quay lai");
@@ -119,11 +125,12 @@ public class App {
     private static void menuNhanVien(){
         int choice1;
         do {
-            System.out.println("\n===== QUAN LY NhanVien =====");
+            System.out.println("\n===== QUAN LY NHAN VIEN =====");
             System.out.println("1. Them nhan vien");
             System.out.println("2. Xoa nhan vien");
             System.out.println("3. Sua thong tin nhan vien");
             System.out.println("4. Xem danh sach nhan vien");
+            System.out.println("5. Thanh toan tien luong");
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             choice1 = Integer.parseInt(sc.nextLine());
@@ -141,6 +148,7 @@ public class App {
                     
                 }
                 case 4 -> NhanVien.xemNhanVien();
+                case 5 -> NhanVien.ThanhToanLuong();
                 case 0 -> System.out.println("Quay lai menu chinh");
                 default -> System.out.println("Lua chon khong hop le!");
             }

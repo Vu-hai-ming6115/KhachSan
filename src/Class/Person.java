@@ -1,21 +1,27 @@
 package Class;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Person {
     private String maID;
     private String ten;
     private String soCMND;
     private String soDienThoai;
 
-    protected static int cnt = 1;
+    // Lưu bộ đếm riêng cho từng loại (NV, KH, ...)
+    private static Map<String, Integer> demTheoPrefix = new HashMap<>();
 
-    // Constructor tự tạo ID tăng dần
+    // Constructor tự tạo ID theo prefix, đếm riêng từng loại
     public Person(String prefix) {
-        this.maID = String.format("%s%03d",prefix, cnt++);
+        int so = demTheoPrefix.getOrDefault(prefix, 0) + 1;
+        demTheoPrefix.put(prefix, so);
+        this.maID = String.format("%s%03d", prefix, so);
     }
 
-    // Constructor đầy đủ thông tin (không nhập maID thủ công)
-    public Person(String prefix,String ten, String soCMND, String soDienThoai) {
-        this(prefix);  // Gọi constructor để tự tạo maID
+    // Constructor đầy đủ thông tin
+    public Person(String prefix, String ten, String soCMND, String soDienThoai) {
+        this(prefix);
         setTen(ten);
         setSoCMND(soCMND);
         setSoDienThoai(soDienThoai);
@@ -51,8 +57,8 @@ public class Person {
         this.soDienThoai = soDienThoai;
     }
 
-    // Reset ID counter nếu cần
-    public static void setCnt(int cnt) {
-        Person.cnt = cnt;
+    // ===== TIỆN ÍCH =====
+    public static void resetCounter() {
+        demTheoPrefix.clear();
     }
 }

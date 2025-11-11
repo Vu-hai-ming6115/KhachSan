@@ -24,8 +24,9 @@ public class QuanLyPhong {
         for (Phong p : dsPhong) {
             System.out.println(p);
             if (p.isTrangThai() && p.getKhachThue() != null) {
-                System.out.println("Khach thue: " + p.getKhachThue().getTen() +
-                        " (Ma KH: " + p.getKhachThue().getMaID() + ")");
+                System.out.println("   -> Khach thue: " + p.getKhachThue().getTen() +
+                        " (Ma KH: " + p.getKhachThue().getMaID() + ")" +
+                        " - Dat luc: " + p.getThoiGianDatPhong());
             }
         }
         System.out.println("=============================\n");
@@ -77,10 +78,8 @@ public class QuanLyPhong {
             return;
         }
 
-        if (phong.traPhong()) {
-            ThanhToan.ghiNhanThanhToan(phong);
-            System.out.println("Tra phong thanh cong!");
-        }
+        ThanhToan.ghiNhanThanhToan(phong);
+        phong.traPhong();
     }
     //==== Xoa Phong =====
     public static void xoaPhong(){
@@ -148,4 +147,53 @@ public class QuanLyPhong {
         return null;
     }
     
+    public static void themDichVuVaoPhong(Scanner sc) {
+    System.out.print("Nhap ma phong can them dich vu: ");
+    String maPhong = sc.nextLine();
+
+    Phong phong = null;
+    for (Phong p : dsPhong) {
+        if (p.getMaPhong().equalsIgnoreCase(maPhong)) {
+            phong = p;
+            break;
+        }
+    }
+
+    if (phong == null) {
+        System.out.println("Khong tim thay phong!");
+        return;
+    }
+
+    System.out.print("Nhap ten dich vu: ");
+    String tenDV = sc.nextLine();
+
+    System.out.print("Nhap gia dich vu: ");
+    double giaDV = sc.nextDouble();
+    sc.nextLine();
+
+    DichVu dv = new DichVu(tenDV, giaDV);
+        phong.themDichVu(dv);
+    }
+
+    public static void xemDichVuTheoPhong(Scanner sc) {
+    System.out.print("Nhap ma phong: ");
+    String maPhong = sc.nextLine();
+
+    for (Phong p : dsPhong) {
+        if (p.getMaPhong().equalsIgnoreCase(maPhong)) {
+            if (p.getDsDichVu().isEmpty()) {
+                System.out.println("Phong chua co dich vu nao!");
+            } else {
+                System.out.println("Cac dich vu cua phòng " + maPhong + ":");
+                for (DichVu dv : p.getDsDichVu()) {
+                    System.out.println(" - " + dv.getTenDichVu());
+                }
+            }
+            return;
+        }
+    }
+    System.out.println("Khong tim thay phong!");
+}
+
+
 }

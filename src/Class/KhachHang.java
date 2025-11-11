@@ -31,7 +31,7 @@ public class KhachHang extends Person {
         System.out.print("Nhap ten khach hang: ");
         String ten = sc.nextLine();
 
-        System.out.println("Nhap so CMND: ");
+        System.out.print("Nhap so CMND: ");
         String cmnd = sc.nextLine();
         
 
@@ -106,7 +106,7 @@ public class KhachHang extends Person {
 
     public static void xemKhachHang() {
         if (dsKhachHang.isEmpty()) {
-            System.out.println("⚠️ Chua co khach hang nao!");
+            System.out.println(" Chua co khach hang nao!");
             return;
         }
 
@@ -116,6 +116,25 @@ public class KhachHang extends Person {
         }
         System.out.println("================================\n");
     }
+    
+    public static void timKhachHang(){
+        if (dsKhachHang.isEmpty()) {
+            System.out.println(" Chua co khach hang nao!");
+            return;
+        }
+        System.out.print("Vui long nhap ten khach hang: ");
+        String ten = sc.nextLine().trim().toLowerCase();
+        boolean found = false;
+        for(KhachHang kh : dsKhachHang){
+            if(kh.getTen().toLowerCase().contains(ten)){
+                System.out.println(kh);
+                found = true;
+            }
+        }
+            if (!found) {
+                System.out.println("Khong tim thay khach hang co ten: " + ten);
+            }
+    }
 
     @Override
     public String toString() {
@@ -123,6 +142,5 @@ public class KhachHang extends Person {
             "Khach hang [ID=%s, Ten=%s, CMND=%s, SDT=%s, Email=%s]",
             getMaID(), getTen(), getSoCMND(), getSoDienThoai(), getEmail()
         );
-    }
-    
+    }  
 }
